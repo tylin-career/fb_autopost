@@ -1,0 +1,15 @@
+# Confidential files
+*.json
+
+# App files
+build/*
+dist/*
+
+# IDE files
+.idea
+.vscode
+
+# Ignore
+__pycache__
+app/*.txt
+notebooks/*
