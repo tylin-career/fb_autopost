@@ -20,6 +20,20 @@ ARTICLE_PATH = "data/resource/article.txt"
 PHOTO_PATH = "data/resource/pic_folder/pic.png"
 
 
+def get_token():
+    try:
+        with open("data/credentials/lineNotify_token.json") as filePointer:
+            contents = filePointer.read()
+        token = json.loads(contents)
+        logger.info(f"Line token loaded.")
+        return token
+    except:
+        logger.info(
+            "Failed to retrieve your line token."
+        )
+        input("Press ENTER to exit...")
+
+
 def load_passage_txt(ARTICLE_PATH) -> str:
     with open(ARTICLE_PATH, 'r', encoding='utf-8') as file:
         content = file.readlines()
@@ -160,7 +174,7 @@ def main():
     browser = login_facebook(options)
     groups = get_group_list(GROUP_LISTS)
     content = load_passage_txt(ARTICLE_PATH)
-    token = "gz9wkJZEn5PzCpVrBunGDVp5WvrGhGtRwdbibB1gnKl"
+    token = get_token()
     fail_url = list()
     for group in groups:
         try:
